@@ -32,16 +32,14 @@
                 <Button fx:id="btnSiguiente" text="⏭️" onAction="#onNextSong" styleClass="boton-control-azul" />
             </HBox>
             
-            <!-- NUEVO: VOLUMEN 
-            <Label text="Volumen:" styleClass="genero-actual"/>
+            <!-- NUEVO: VOLUMEN -->
+      
             <HBox spacing="20" alignment="CENTER">
                 <Button fx:id="btnVolDown" text="🔉 -" onAction="#onVolDown"
                         styleClass="boton-control-azul" prefWidth="120" prefHeight="60"/>
                 <Button fx:id="btnVolUp" text="🔊 +" onAction="#onVolUp"
                         styleClass="boton-control-azul" prefWidth="120" prefHeight="60"/>
-            </HBox>
-            <Label fx:id="labelVolumen" text="Volumen: 60%" styleClass="genero-actual" alignment="CENTER"/>
-            -->
+            </HBox>    
         </VBox>
     </left>
 

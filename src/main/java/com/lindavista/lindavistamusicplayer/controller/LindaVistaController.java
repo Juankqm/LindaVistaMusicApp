@@ -4,9 +4,12 @@ import com.lindavista.lindavistamusicplayer.model.Cancion;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javazoom.jl.player.Player;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -16,8 +19,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class LindaVistaController {
 
@@ -31,7 +32,6 @@ public class LindaVistaController {
     private ListView<Cancion> listCanciones;
     @FXML
     private BorderPane root;
-
     @FXML
     private ImageView logoImage;
 
@@ -42,21 +42,26 @@ public class LindaVistaController {
     private Thread hiloReproduccion;
     private Player player;
 
-    //private final Path carpetaCanciones = Paths.get("MySongs");
+    // ===== NUEVO: volumen Windows con NirCmd (estable) =====
+    // Escala interna de Windows: 0..65535. Este delta suele ser cómodo (ajusta a gusto).
+    private static final int NIRCMD_DELTA = 7000;
+
     private Path obtenerCarpetaCanciones() {
-        String userDir = System.getProperty("user.dir"); // Directorio donde se ejecuta el EXE
+        String userDir = System.getProperty("user.dir"); // Directorio donde se ejecuta el JAR
         return Paths.get(userDir, "MySongs");
     }
 
     @FXML
     public void initialize() {
         actualizarGenero(generos.get(generoActualIndex));
+
         Image logo = new Image(Objects.requireNonNull(getClass().getResource("/icons/logo.png")).toExternalForm());
         logoImage.setImage(logo);
 
         root.getStylesheets().add(
                 Objects.requireNonNull(getClass().getResource("/styles/style.css")).toExternalForm()
         );
+
 
         listCanciones.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -88,6 +93,72 @@ public class LindaVistaController {
         });
     }
 
+    // ===================== NUEVO: BOTONES VOLUMEN WINDOWS =====================
+    @FXML
+    private void onVolUp() {
+        cambiarVolumenWindows(+NIRCMD_DELTA);
+    }
+
+    @FXML
+    private void onVolDown() {
+        cambiarVolumenWindows(-NIRCMD_DELTA);
+    }
+
+    // Opcional (si agregas un botón mute en FXML con onAction="#onMute")
+    @FXML
+    private void onMute() {
+        ejecutarNircmd("mutesysvolume", "2"); // 2 = toggle
+    }
+
+    private void cambiarVolumenWindows(int delta) {
+        // Requiere nircmd.exe junto al JAR (misma carpeta donde ejecutas el comando)
+        ejecutarNircmd("changesysvolume", String.valueOf(delta));
+    }
+
+    private void ejecutarNircmd(String... args) {
+        if (!isWindows()) {
+            System.err.println("Volumen Windows: N/A (no es Windows).");
+            return;
+        }
+
+        try {
+            String userDir = System.getProperty("user.dir");
+            File exe = Paths.get(userDir, "nircmdc.exe").toFile(); // ← CLAVE
+
+            if (!exe.exists()) {
+                System.err.println("No se encontró nircmdc.exe en: " + exe.getAbsolutePath());
+                if (labelVolumen != null) {
+                    labelVolumen.setText("Volumen: falta nircmdc.exe");
+                }
+                return;
+            }
+
+            System.out.println("Ejecutando: " + exe.getAbsolutePath() + " " + String.join(" ", args));
+
+            List<String> cmd = new ArrayList<>();
+            cmd.add(exe.getAbsolutePath());
+            cmd.addAll(List.of(args));
+
+            new ProcessBuilder(cmd).start();
+
+    
+
+        } catch (Exception e) {
+            System.err.println("Error ejecutando nircmdc: " + e.getMessage());
+            if (labelVolumen != null) {
+                labelVolumen.setText("Volumen: error");
+            }
+        }
+    }
+
+    
+    
+    private boolean isWindows() {
+        String os = System.getProperty("os.name", "").toLowerCase();
+        return os.contains("win");
+    }
+
+    // ===================== TU CÓDIGO FUNCIONAL (SIN CAMBIOS) =====================
     @FXML
     public void onPreviousGenre() {
         generoActualIndex = (generoActualIndex - 1 + generos.size()) % generos.size();
@@ -166,7 +237,6 @@ public class LindaVistaController {
     }
 
     private void cargarCanciones(String genero) {
-        //Path carpeta = carpetaCanciones.resolve(genero);
         Path carpeta = obtenerCarpetaCanciones().resolve(genero);
         List<Cancion> canciones = new ArrayList<>();
 
