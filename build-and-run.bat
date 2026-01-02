@@ -1,0 +1,6 @@
+@echo off
+echo Compilando y empaquetando LindaVistaMusicPlayer...
+mvn clean package
+
+echo Ejecutando LindaVistaMusicPlayer...
+start target\LindaVistaMusicPlayer-1.0.exe

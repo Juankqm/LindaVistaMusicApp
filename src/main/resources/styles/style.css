@@ -1,0 +1,209 @@
+/* Fondo general de la aplicación */
+.root {
+    -fx-background-color: #0F0E0F;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: white;
+}
+
+.boton-control {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #444444;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-pref-width: 120;
+    -fx-pref-height: 60;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #222222, 6, 0.5, 0, 1);
+}
+/* Texto del género actual */
+.genero-actual {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    
+}
+/* Estilo del VBox contenedor */
+.lista-canciones {
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+.label-lista-canciones{
+     -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    
+}
+
+/* Estilo del ListView */
+#listCanciones {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #ff9900;
+    -fx-border-width: 2;
+    -fx-pref-width: 600;
+    -fx-pref-height: 400;
+}
+
+/* Estilo de cada celda */
+#listCanciones .list-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 8;
+}
+
+/* Celda seleccionada */
+#listCanciones .list-cell:selected {
+    -fx-background-color: #ff9900;
+    -fx-text-fill: black;
+}
+
+/* Botón azul (anterior y siguiente) */
+.boton-control-azul {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #0077cc;
+    -fx-border-color: #0077cc;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-pref-width: 100;
+    -fx-pref-height: 60;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #0077cc, 8, 0.4, 0, 2);
+}
+
+/* Botón rojo (pausa) */
+.boton-control-rojo {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #cc0000;
+    -fx-border-color: #cc0000;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-pref-width: 100;
+    -fx-pref-height: 60;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #cc0000, 8, 0.4, 0, 2);
+}
+
+.panel-izquierdo {
+    -fx-pref-width: 400;
+    -fx-padding: 10 20 30 20;
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+/* Botones de control (Anterior, Detener, Siguiente) */
+.button-control {
+    -fx-background-color: #444444;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #222222, 4, 0.5, 0, 0);
+    -fx-pref-width: 140;
+    -fx-pref-height: 60;
+}
+
+/* Botones de género */
+.boton-genero {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #ff9900;
+    -fx-border-width: 3;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 15;
+    -fx-pref-width: 180;
+    -fx-pref-height: 80;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, #ff9900, 10, 0.4, 0, 2);
+}
+
+/* Panel derecho */
+.list {
+    -fx-pref-width: 600;
+}
+.label-cancion-actual {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #333333;
+    -fx-border-color: #ff9900;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-alignment: center;
+}
+
+.list-view {
+    -fx-background-color: #1c1c1c;
+    -fx-border-color: #00ccff;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+        -fx-pref-width: 600;
+    -fx-min-width: 600;
+    -fx-max-width: 600;
+    
+}
+
+/* Canción actual */
+#labelCancionActual {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-color: #333333;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+}
+#btnRancheras {
+    -fx-border-color: #ff9900;
+    -fx-effect: dropshadow(gaussian, #ff9900, 10, 0.4, 0, 2);
+}
+
+#btnSalsa {
+    -fx-border-color: #64b96a;
+    -fx-effect: dropshadow(gaussian, #64b96a, 10, 0.4, 0, 2);
+}
+
+#btnCumbia {
+    -fx-border-color: #01c4e7;
+    -fx-effect: dropshadow(gaussian, #01c4e7, 10, 0.4, 0, 2);
+}
+
+#btnReggaeton {
+    -fx-border-color: #ff0534;
+    -fx-effect: dropshadow(gaussian, #ff0534, 10, 0.4, 0, 2);
+}
+
+#btnBachata {
+    -fx-border-color: #b1ef04;
+    -fx-effect: dropshadow(gaussian, #b1ef04, 10, 0.4, 0, 2);
+}
+
+#btnReggae {
+    -fx-border-color: #652ec7;
+    -fx-effect: dropshadow(gaussian, #652ec7, 10, 0.4, 0, 2);
+}
+.boton-genero {
+    /* ... estilos existentes ... */
+    -fx-cursor: hand;
+}
+.hbox {
+    -fx-padding: 20 0 40 0; /* top, right, bottom, left */
+}

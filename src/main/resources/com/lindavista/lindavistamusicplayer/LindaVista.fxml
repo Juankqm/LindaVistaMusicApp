@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane fx:id="root"
+            fx:controller="com.lindavista.lindavistamusicplayer.controller.LindaVistaController"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- 🎚️ Panel izquierdo: género y navegación -->
+    <left>
+        <VBox spacing="20" alignment="CENTER" styleClass="panel-izquierdo">
+            <!-- 🎚️ Panel izquierdo: Logo -->        
+            <ImageView fx:id="logoImage"
+                       fitWidth="200"
+                       preserveRatio="true"
+                       pickOnBounds="true"
+                       styleClass="logoImage"
+            >
+                <Image url="@icons/logo.png" />
+            </ImageView>
+        
+            <Label text="Género musical:" styleClass="genero-actual"/>
+            <Label fx:id="labelGeneroActual" styleClass="genero-actual" />
+            <HBox spacing="20" alignment="CENTER">
+                <Button fx:id="btnAnterior" text="⏮️" onAction="#onPreviousSong" styleClass="boton-control-azul" />
+                <Button fx:id="btnPausa" text="⏹️" onAction="#onStop" styleClass="boton-control-rojo" />
+                <Button fx:id="btnSiguiente" text="⏭️" onAction="#onNextSong" styleClass="boton-control-azul" />
+            </HBox>
+            
+            <!-- NUEVO: VOLUMEN 
+            <Label text="Volumen:" styleClass="genero-actual"/>
+            <HBox spacing="20" alignment="CENTER">
+                <Button fx:id="btnVolDown" text="🔉 -" onAction="#onVolDown"
+                        styleClass="boton-control-azul" prefWidth="120" prefHeight="60"/>
+                <Button fx:id="btnVolUp" text="🔊 +" onAction="#onVolUp"
+                        styleClass="boton-control-azul" prefWidth="120" prefHeight="60"/>
+            </HBox>
+            <Label fx:id="labelVolumen" text="Volumen: 60%" styleClass="genero-actual" alignment="CENTER"/>
+            -->
+        </VBox>
+    </left>
+
+    <!--Panel derecho: canciones -->
+    <right>
+        <VBox styleClass="lista-canciones">
+            <Label text="🎶 Lista de canciones:" styleClass="label-lista-canciones"/>
+            <ListView fx:id="listCanciones" />
+            <Label fx:id="labelCancionActual"
+                   styleClass="label-cancion-actual"
+                   prefWidth="600"
+                   wrapText="true"
+                   alignment="CENTER" />
+        </VBox>
+    </right>
+
+    <!-- 🎵 Panel inferior: géneros -->
+    <bottom>
+        <HBox spacing="20" BorderPane.alignment="CENTER" styleClass="hbox" alignment="CENTER" >
+            <!-- Botones de género -->
+            <Button fx:id="btnRancheras"
+                    text="Rancheras"
+                    onAction="#onGeneroRancherasClick"
+                    styleClass="boton-genero" />
+         
+            <Button fx:id="btnCumbia"
+                    text="Cumbia"
+                    onAction="#onGeneroCumbiaClick"
+                    styleClass="boton-genero" />
+            
+            <Button fx:id="btnSalsa"
+                    text="Salsa"
+                    onAction="#onGeneroSalsaClick"
+                    styleClass="boton-genero" />
+
+            <Button fx:id="btnReggaeton"
+                    text="Reggaetón"
+                    onAction="#onGeneroReggaetonClick"
+                    styleClass="boton-genero" />
+
+            <Button fx:id="btnBachata"
+                    text="Bachata"
+                    onAction="#onGeneroBachataClick"
+                    styleClass="boton-genero" />
+
+            <Button fx:id="btnReggae"
+                    text="Reggae"
+                    onAction="#onGeneroReggaeClick"
+                    styleClass="boton-genero" />
+
+        </HBox>
+    </bottom>
+
+</BorderPane>
